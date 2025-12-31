@@ -1,0 +1,262 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --primary: #3d5afe;
+  --primary-hover: #2948ff;
+  --success: #00c853;
+  --error: #ff3d00;
+  --bg-main: #f8f9fe;
+  --bg-white: #ffffff;
+  --text-main: #1a1a1a;
+  --text-muted: #6b7280;
+  --border-color: #e5e7eb;
+  --topbar-height: 70px;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  overflow-x: hidden;
+}
+
+/* Layout */
+.dashboard-container {
+  display: flex;
+  height: calc(100vh - var(--topbar-height));
+  width: 100vw;
+}
+
+.topbar-container {
+  height: var(--topbar-height);
+  z-index: 1000;
+}
+
+.watchlist-container {
+  flex: 0 0 350px;
+  background: var(--bg-white);
+  border-right: 1px solid var(--border-color);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.content {
+  flex: 1;
+  padding: 40px;
+  overflow-y: auto;
+}
+
+/* Search Area */
+.search-container {
+  padding: 12px 16px;
+  background: #fff;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.search {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  font-size: 0.85rem;
+}
+
+.btn {
+    text-decoration: none !important;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+    border: 1px solid transparent;
+}
+
+/* Primary Outline Button (Withdraw) */
+.btn-outline-primary {
+    color: var(--primary) !important;
+    border-color: var(--primary) !important;
+    background-color: transparent !important;
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--primary) !important;
+    color: #fff !important;
+}
+
+/* Danger Outline Button (Logout) */
+.btn-outline-danger {
+    color: var(--error) !important;
+    border-color: var(--error) !important;
+    background-color: transparent !important;
+    opacity: 1 !important; /* Ensure it is fully visible */
+}
+
+.btn-outline-danger:hover {
+    background-color: var(--error) !important;
+    color: #fff !important;
+}
+
+/* Solid Buttons */
+.btn-primary, .btn-blue {
+    background-color: var(--primary) !important;
+    color: #fff !important;
+}
+
+.btn-danger {
+    background-color: var(--error) !important;
+    color: #fff !important;
+}
+
+.counts {
+  display: block;
+  font-size: 0.8rem;
+  color: #888;
+  margin-top: 8px;
+}
+
+/* List Items */
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.list li {
+  padding: 16px;
+  border-bottom: 1px solid #f5f5f5;
+  cursor: pointer;
+  position: relative;
+}
+
+.list li:hover {
+  background: #fafafa;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.item p {
+  margin: 0;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.itemInfo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.up {
+  color: #4caf50 !important;
+}
+
+.down {
+  color: #f44336 !important;
+}
+
+/* Dashboard Cards */
+.summary-card {
+  transition: transform 0.2s;
+}
+
+.summary-card:hover {
+  transform: translateY(-2px);
+}
+
+.main-stat h1 {
+  letter-spacing: -1px;
+}
+
+/* Sidebar Navigation */
+.nav-link {
+  transition: all 0.2s;
+  font-size: 0.95rem;
+}
+
+.nav-link:hover {
+  color: var(--primary) !important;
+}
+
+/* Tables */
+.order-table table {
+  width: 100%;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.order-table th {
+  background: #fcfcfc;
+  padding: 16px;
+  text-align: left;
+  font-size: 0.75rem;
+  color: #888;
+  text-transform: uppercase;
+}
+
+.order-table td {
+  padding: 16px;
+  border-top: 1px solid #f5f5f5;
+  font-size: 0.9rem;
+}
+
+/* Buy Window */
+#buy-window {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  border-radius: 12px !important;
+  overflow: hidden;
+  border: none;
+  background: white;
+}
+
+/* Utils */
+.transition-all {
+  transition: all 0.2s ease-in-out;
+}
+
+.leading-tight {
+  line-height: 1.25;
+}
+
+.letter-tight {
+  letter-spacing: -0.5px;
+}
+
+.extra-small {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.bg-primary-subtle {
+  background-color: rgba(61, 90, 254, 0.1) !important;
+}
+
+.bg-success-subtle {
+  background-color: rgba(0, 200, 83, 0.1) !important;
+}
+
+/* Tab Transitions */
+.nav-link {
+  border: 1px solid transparent;
+}
+
+.nav-link:hover {
+  background-color: #f0f3ff;
+}
+
+.animate__animated {
+  animation-duration: 0.8s;
+}
