@@ -3,9 +3,9 @@ import axios from 'axios';
 
 const AuthContext = createContext();
 
-const API_URL = window.location.hostname === 'localhost' 
-    ? 'http://localhost:3002/api/auth' 
-    : 'https://weathup-finance.onrender.com/api/auth'; 
+const API_URL = window.location.hostname === 'localhost'
+    ? 'http://localhost:3002/api/auth'
+    : 'https://weathup-finance-backend.onrender.com/api/auth';
 
 export const AuthProvider = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -46,11 +46,11 @@ export const AuthProvider = ({ children }) => {
 
             localStorage.setItem('token', token);
             localStorage.setItem('username', username);
-            
+
             setAuthToken(token);
             setIsAuthenticated(true);
             setUser({ username });
-            
+
             return true;
         } catch (err) {
             console.error(err.response?.data?.msg || 'Login failed');
@@ -62,10 +62,10 @@ export const AuthProvider = ({ children }) => {
         try {
             const res = await axios.post(`${API_URL}/signup`, { username, email, password });
             const { token } = res.data;
-            
+
             localStorage.setItem('token', token);
             localStorage.setItem('username', username);
-            
+
             setAuthToken(token);
             setIsAuthenticated(true);
             setUser({ username });

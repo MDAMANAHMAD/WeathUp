@@ -5,7 +5,7 @@ const AuthContext = createContext();
 
 const API_URL = window.location.hostname === 'localhost' 
     ? 'http://localhost:3002/api/auth' 
-    : 'https://weathup-finance.onrender.com/api/auth';
+    : 'https://weathup-finance-backend.onrender.com/api/auth';
 
 export const AuthProvider = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);

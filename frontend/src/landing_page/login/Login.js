@@ -33,7 +33,9 @@ function Login() {
         try {
             // Updated to use Local Backend
             const response = await axios.get(
-                'http://localhost:3002/api/auth/visitor-login'
+                window.location.hostname === 'localhost'
+                    ? 'http://localhost:3002/api/auth/visitor-login'
+                    : 'https://weathup-finance-backend.onrender.com/api/auth/visitor-login'
             );
 
             const { token, username } = response.data;
