@@ -10,7 +10,7 @@ function Hero() {
                         src="media/images/homeHero.png" 
                         alt="WealthUp Hero" 
                         className="img-fluid" 
-                        style={{ maxWidth: '70%', margin: '0 auto' }}
+                        style={{ maxWidth: '50%', margin: '0 auto' }}
                     />
                     <h1 className="hero-title animate__animated animate__fadeInUp">Invest in everything</h1>
                     <p className="hero-subtitle animate__animated animate__fadeInUp animate__delay-1s">

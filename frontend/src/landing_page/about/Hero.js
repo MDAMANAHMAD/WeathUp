@@ -27,12 +27,12 @@ const Hero = () => {
             
             {/* History Paragraph */}
             <p className="fs-5 text-dark mb-4">
-              We kick-started operations on the 15th of August, 2010 with the goal of breaking all barriers that traders and investors face in India in terms of cost, support, opportunity and technology. We named the company Zerodha, a combination of Zero and Rodha, the Sanskrit word for barrier. Today, our disruptive pricing models and in-house technology have made us the largest stock broker in India.
+              We launched WealthUp with a simple mission: to make premium wealth management accessible to everyone. By combining cutting-edge technology with deep financial expertise, we've broken down the high-cost barriers of traditional investing. Today, WealthUp is one of the fastest-growing investment platforms, trusted by a new generation of smart investors.
             </p>
             
             {/* Stats Paragraph */}
             <p className="fs-5 text-dark mb-4">
-              Over 1.6 crore investors place millions of orders everyday on our powerful investment platforms, contributing over 15% of all retail trading volumes in India.
+              Over 2 million investors manage their portfolios on our intuitive platform, executing thousands of trades daily with zero hidden fees.
             </p>
           </div>
 
@@ -41,12 +41,12 @@ const Hero = () => {
             
             {/* Community/Investment Paragraph */}
             <p className="fs-5 text-dark mb-4">
-              In addition, we run a number of popular open online educational and community initiatives to empower retail traders and investors. We've invested in several fintech startups with the goal of growing the Indian capital markets.
+              Our commitment goes beyond just trading. We provide comprehensive educational resources, real-time market insights, and a vibrant community to help you make informed decisions. We back innovative fintech solutions that define the future of finance.
             </p>
             
             {/* Closing Paragraph with Blog/Media links (text-muted for lighter appearance) */}
             <p className="fs-5 text-muted">
-              And, we're always up to something new every day. Catch up on the latest updates on our blog or see what the media is saying about us.
+              We are constantly evolving. Stay ahead of the market with our daily updates and see how WealthUp is reshaping the investment landscape.
             </p>
           </div>
         </div>

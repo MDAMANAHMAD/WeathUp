@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { useNavigate, Link } from 'react-router-dom';
+import axios from 'axios';
 
 function Login() {
     const [email, setEmail] = useState('');
@@ -17,13 +18,42 @@ function Login() {
         if (success) {
             const token = localStorage.getItem('token');
             const username = localStorage.getItem('username');
-            // Redirect to dashboard with token and username in URL for cross-origin sync
-            window.location.href = `https://weathup-dashboard-portal.vercel.app/?token=${token}&username=${encodeURIComponent(username)}`; 
+            // Redirect based on environment
+            if (window.location.hostname === 'localhost') {
+                window.location.href = `http://localhost:3001/?token=${token}&username=${encodeURIComponent(username)}`;
+            } else {
+                window.location.href = `https://weathup-dashboard-portal.vercel.app/?token=${token}&username=${encodeURIComponent(username)}`;
+            }
         } else {
             setError('Login failed. Please check your credentials.');
         }
     };
 
+    const handleDemoLogin = async () => {
+        try {
+            // Always use production backend
+            const response = await axios.post(
+                'https://weathup-finance.onrender.com/api/auth/visitor-login',
+                {}
+            );
+
+            const { token, username } = response.data;
+
+            // Store token
+            localStorage.setItem("token", token);
+            localStorage.setItem("username", username);
+
+            // Redirect based on environment
+            if (window.location.hostname === 'localhost') {
+                window.location.href = `http://localhost:3001/?token=${token}&username=${encodeURIComponent(username)}`;
+            } else {
+                window.location.href = `https://weathup-dashboard-portal.vercel.app/?token=${token}&username=${encodeURIComponent(username)}`;
+            }
+        } catch (err) {
+            console.error(err);
+            setError('Unable to access demo account at this time.');
+        }
+    };
 
     return (
         <div className="container py-5">
@@ -35,38 +65,30 @@ function Login() {
                         <form onSubmit={handleSubmit}>
                             <div className="mb-3">
                                 <label className="form-label text-muted">Email address</label>
-                                <input 
-                                    type="email" 
-                                    className="form-control form-control-lg" 
+                                <input
+                                    type="email"
+                                    className="form-control form-control-lg"
                                     placeholder="Enter your email"
-                                    value={email} 
-                                    onChange={(e) => setEmail(e.target.value)} 
-                                    required 
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    required
                                 />
                             </div>
                             <div className="mb-4">
                                 <label className="form-label text-muted">Password</label>
-                                <input 
-                                    type="password" 
-                                    className="form-control form-control-lg" 
+                                <input
+                                    type="password"
+                                    className="form-control form-control-lg"
                                     placeholder="Enter your password"
-                                    value={password} 
-                                    onChange={(e) => setPassword(e.target.value)} 
-                                    required 
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    required
                                 />
                             </div>
                             <button type="submit" className="btn btn-primary btn-lg w-100 fw-bold mb-3">Login</button>
-                            <button 
+                            <button
                                 type="button"
-                                onClick={async () => {
-                                    try {
-                                        const res = await fetch('https://weathup-finance.onrender.com/api/auth/visitor-login');
-                                        const data = await res.json();
-                                        window.location.href = `https://weathup-dashboard-portal.vercel.app/?token=${data.token}&username=${encodeURIComponent(data.username)}`;
-                                    } catch (err) {
-                                        setError('Unable to access demo account at this time.');
-                                    }
-                                }}
+                                onClick={handleDemoLogin}
                                 className="btn btn-outline-primary btn-lg w-100 fw-bold"
                             >
                                 Try Demo Account
