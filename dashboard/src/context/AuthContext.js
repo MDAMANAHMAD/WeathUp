@@ -3,7 +3,9 @@ import axios from 'axios';
 
 const AuthContext = createContext();
 
-const API_URL = 'https://weathup-finance.onrender.com/api/auth'; // Match your backend URL
+const API_URL = window.location.hostname === 'localhost' 
+    ? 'http://localhost:3002/api/auth' 
+    : 'https://weathup-finance.onrender.com/api/auth'; // Match your backend URL
 
 export const AuthProvider = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
