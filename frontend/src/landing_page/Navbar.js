@@ -63,7 +63,7 @@ function Navbar() {
                                 <li className="nav-item ms-lg-2">
                                     <a 
                                         className="btn btn-outline-primary px-3 py-2" 
-                                        href={`https://weathup-dashboard.onrender.com/?token=${localStorage.getItem('token')}&username=${encodeURIComponent(localStorage.getItem('username'))}`}
+                                        href={`https://weathup-dashboard-portal.vercel.app/?token=${localStorage.getItem('token')}&username=${encodeURIComponent(localStorage.getItem('username'))}`}
                                     >
                                         Dashboard
                                     </a>

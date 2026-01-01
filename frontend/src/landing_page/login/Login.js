@@ -18,7 +18,7 @@ function Login() {
             const token = localStorage.getItem('token');
             const username = localStorage.getItem('username');
             // Redirect to dashboard with token and username in URL for cross-origin sync
-            window.location.href = `https://weathup-dashboard.onrender.com/?token=${token}&username=${encodeURIComponent(username)}`; 
+            window.location.href = `https://weathup-dashboard-portal.vercel.app/?token=${token}&username=${encodeURIComponent(username)}`; 
         } else {
             setError('Login failed. Please check your credentials.');
         }
@@ -62,7 +62,7 @@ function Login() {
                                     try {
                                         const res = await fetch('https://weathup-finance.onrender.com/api/auth/visitor-login');
                                         const data = await res.json();
-                                        window.location.href = `https://weathup-dashboard.onrender.com/?token=${data.token}&username=${encodeURIComponent(data.username)}`;
+                                        window.location.href = `https://weathup-dashboard-portal.vercel.app/?token=${data.token}&username=${encodeURIComponent(data.username)}`;
                                     } catch (err) {
                                         setError('Unable to access demo account at this time.');
                                     }

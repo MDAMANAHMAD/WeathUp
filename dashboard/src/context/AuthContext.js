@@ -90,7 +90,7 @@ export const AuthProvider = ({ children }) => {
         setAuthToken(null);
         setIsAuthenticated(false);
         setUser(null);
-        window.location.href = 'https://weathup-frontend.onrender.com/?logout=true'; // Redirect with logout param
+        window.location.href = 'https://weathup-frontend-portal.vercel.app/?logout=true'; // Redirect with logout param
     };
 
 
