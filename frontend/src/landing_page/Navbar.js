@@ -65,7 +65,7 @@ function Navbar() {
                                         className="btn btn-outline-primary px-3 py-2" 
                                         href={window.location.hostname === 'localhost' 
                                             ? `http://localhost:3001/?token=${localStorage.getItem('token')}&username=${encodeURIComponent(localStorage.getItem('username'))}`
-                                            : `https://weathup-dashboard-portal.vercel.app/?token=${localStorage.getItem('token')}&username=${encodeURIComponent(localStorage.getItem('username'))}`
+                                            : `https://weath-up-dashboard.vercel.app/?token=${localStorage.getItem('token')}&username=${encodeURIComponent(localStorage.getItem('username'))}`
                                         }
                                     >
                                         Dashboard
