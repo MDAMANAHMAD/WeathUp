@@ -18,8 +18,12 @@ function Signup() {
         if (success) {
             const token = localStorage.getItem('token');
             const username = localStorage.getItem('username');
-            // Redirect to dashboard with token and username in URL for cross-origin sync
-            window.location.href = `https://weathup-dashboard-portal.vercel.app/?token=${token}&username=${encodeURIComponent(username)}`; 
+            // Redirect based on environment
+            if (window.location.hostname === 'localhost') {
+                window.location.href = `http://localhost:3001/?token=${token}&username=${encodeURIComponent(username)}`;
+            } else {
+                window.location.href = `https://weathup-dashboard-portal.vercel.app/?token=${token}&username=${encodeURIComponent(username)}`;
+            } 
         } else {
             setError('Signup failed. User may already exist or there was a server error.');
         }
