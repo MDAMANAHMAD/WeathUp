@@ -25,8 +25,7 @@ app.use(cors({
     origin: [
         'http://localhost:3000', 
         'https://weathup-dashboard.onrender.com',
-        'https://weathup-frontend-portal.vercel.app',
-        'https://weathup-dashboard-portal.vercel.app'
+        /\.vercel\.app$/
     ],
     credentials: true
 }));
