@@ -22,7 +22,7 @@ const app = express();
 // --- MIDDLEWARE SETUP ---
 // Configure CORS to allow requests from your landing page (3000) and dashboard (3001)
 app.use(cors({ 
-    origin: ['http://localhost:3000', 'http://localhost:3001'],
+    origin: ['http://localhost:3000', 'https://weathup-dashboard.onrender.com'],
     credentials: true
 }));
 // Use Express's built-in JSON parser instead of body-parser

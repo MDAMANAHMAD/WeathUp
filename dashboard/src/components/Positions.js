@@ -7,7 +7,7 @@ const Positions = () => {
   useEffect(() => {
     const token = localStorage.getItem("token");
     axios
-      .get("http://localhost:3002/allPositions", {
+      .get("https://weathup-finance.onrender.com/allPositions", {
         headers: {
           "x-auth-token": token,
         },

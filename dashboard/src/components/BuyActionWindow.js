@@ -20,7 +20,7 @@ const BuyActionWindow = ({ uid, mode }) => {
     e.preventDefault();
     const token = localStorage.getItem("token");
     axios.post(
-      "http://localhost:3002/newOrder",
+      "https://weathup-finance.onrender.com/newOrder",
       {
         name: uid,
         qty: parseInt(stockQuantity),

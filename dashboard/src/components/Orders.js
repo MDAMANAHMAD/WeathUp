@@ -8,7 +8,7 @@ const Orders = () => {
   useEffect(() => {
     const token = localStorage.getItem("token");
     axios
-      .get("http://localhost:3002/allOrders", {
+      .get("https://weathup-finance.onrender.com/allOrders", {
         headers: {
           "x-auth-token": token,
         },

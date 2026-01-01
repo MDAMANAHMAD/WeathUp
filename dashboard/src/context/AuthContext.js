@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const AuthContext = createContext();
 
-const API_URL = 'http://localhost:3002/api/auth'; // Match your backend URL
+const API_URL = 'https://weathup-finance.onrender.com/api/auth'; // Match your backend URL
 
 export const AuthProvider = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -90,7 +90,7 @@ export const AuthProvider = ({ children }) => {
         setAuthToken(null);
         setIsAuthenticated(false);
         setUser(null);
-        window.location.href = 'http://localhost:3000/?logout=true'; // Redirect with logout param
+        window.location.href = 'https://weathup-frontend.onrender.com/?logout=true'; // Redirect with logout param
     };
 
 

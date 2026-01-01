@@ -9,7 +9,7 @@ const Holdings = () => {
   useEffect(() => {
     const token = localStorage.getItem("token");
     axios
-      .get("http://localhost:3002/allHoldings", {
+      .get("https://weathup-finance.onrender.com/allHoldings", {
         headers: {
           "x-auth-token": token,
         },
