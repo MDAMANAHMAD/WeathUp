@@ -32,6 +32,10 @@ app.use(express.json());
 // All login/signup logic will be handled here (e.g., /api/auth/login, /api/auth/signup)
 app.use("/api/auth", authRoutes);
 
+app.get("/", (req, res) => {
+    res.send("WealthUp Backend is running!");
+});
+
 // --- UNPROTECTED ROUTES (For initial data setup only) ---
 
 app.get("/addHoldings", async (req, res) => {
