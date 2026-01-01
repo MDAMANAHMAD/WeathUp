@@ -20,8 +20,8 @@ function Awards() {
         <div className="col-lg-6 col-md-12">
           
           {/* Main Headings with margin-bottom */}
-          <h1 className="mb-2">Largest stock broker in India</h1>
-          <p className="mb-4">Recognized for our extensive reach and custom</p>
+          <h1 className="mb-2">India's Fastest Growing Investment Platform</h1>
+          <p className="mb-4">Over 2 Million+ happy investors trust WealthUp.</p>
           
           {/* NESTED ROW: Contains the two lists side-by-side */}
           <div className="row g-4"> {/* g-4 adds a gap/gutter between the columns */}
@@ -29,18 +29,18 @@ function Awards() {
             {/* List 1 (col-6 of the PARENT col-6) */}
             <div className="col-6">
               <ul className="list-unstyled"> {/* list-unstyled removes default bullets/padding */}
-                <li><i className="bi bi-star-fill text-warning me-2"></i> Best Startup 2020</li>
-                <li><i className="bi bi-star-fill text-warning me-2"></i> Innovation Award 2021</li>
-                <li><i className="bi bi-star-fill text-warning me-2"></i> Customer Choice Award 2022</li>
+                <li><i className="bi bi-trophy-fill text-warning me-2"></i> Best Fintech 2024</li>
+                <li><i className="bi bi-trophy-fill text-warning me-2"></i> User Choice 2023</li>
+                <li><i className="bi bi-trophy-fill text-warning me-2"></i> Top Innovator</li>
               </ul>
             </div>
             
             {/* List 2 (col-6 of the PARENT col-6) */}
             <div className="col-6">
               <ul className="list-unstyled">
-                <li><i className="bi bi-star-fill text-warning me-2"></i> Best Startup 2020</li>
-                <li><i className="bi bi-star-fill text-warning me-2"></i> Innovation Award 2021</li>
-                <li><i className="bi bi-star-fill text-warning me-2"></i> Customer Choice Award 2022</li>
+                <li><i className="bi bi-trophy-fill text-warning me-2"></i> Best Support</li>
+                <li><i className="bi bi-trophy-fill text-warning me-2"></i> Secure Platform</li>
+                <li><i className="bi bi-trophy-fill text-warning me-2"></i> Easy UI Award</li>
               </ul>
             </div>
 
