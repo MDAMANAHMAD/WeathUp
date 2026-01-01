@@ -3,8 +3,8 @@ import axios from 'axios';
 
 const AuthContext = createContext();
 
-// Always use production backend to bypass local ISP constraints
-const API_URL = 'https://weathup-finance.onrender.com/api/auth'; 
+// Switched to Local Backend due to Cloud Suspension
+const API_URL = 'http://localhost:3002/api/auth'; 
 
 export const AuthProvider = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);

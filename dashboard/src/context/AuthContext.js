@@ -3,8 +3,8 @@ import axios from 'axios';
 
 const AuthContext = createContext();
 
-// Always use production backend to bypass local ISP constraints
-const API_URL = 'https://weathup-finance.onrender.com/api/auth'; // Match your backend URL
+// Switched to Local Backend due to Cloud Suspension
+const API_URL = 'http://localhost:3002/api/auth';
 
 export const AuthProvider = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -91,7 +91,11 @@ export const AuthProvider = ({ children }) => {
         setAuthToken(null);
         setIsAuthenticated(false);
         setUser(null);
-        window.location.href = 'https://weathup-frontend-portal.vercel.app/?logout=true'; // Redirect with logout param
+        if (window.location.hostname === 'localhost') {
+            window.location.href = 'http://localhost:3000/?logout=true';
+        } else {
+            window.location.href = 'https://weathup-frontend-portal.vercel.app/?logout=true';
+        }
     };
 
 

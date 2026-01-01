@@ -31,12 +31,12 @@ function Login() {
 
     const handleDemoLogin = async () => {
         try {
-            // Always use production backend
+            // Updated to use Local Backend
             const response = await axios.post(
-                'https://weathup-finance.onrender.com/api/auth/visitor-login',
+                'http://localhost:3002/api/auth/visitor-login',
                 {}
             );
-
+            
             const { token, username } = response.data;
 
             // Store token
