@@ -22,7 +22,7 @@ function Signup() {
             if (window.location.hostname === 'localhost') {
                 window.location.href = `http://localhost:3001/?token=${token}&username=${encodeURIComponent(username)}`;
             } else {
-                window.location.href = `https://weathup-dashboard-portal.vercel.app/?token=${token}&username=${encodeURIComponent(username)}`;
+                window.location.href = `https://weath-up-dashboard.vercel.app/?token=${token}&username=${encodeURIComponent(username)}`;
             } 
         } else {
             setError('Signup failed. User may already exist or there was a server error.');

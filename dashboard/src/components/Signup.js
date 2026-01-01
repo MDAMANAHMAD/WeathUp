@@ -68,7 +68,7 @@ function Signup() {
                                 Already have an account? <Link to="/login" className="text-decoration-none fw-bold">Login</Link>
                             </p>
                             <a 
-                                href={window.location.hostname === 'localhost' ? 'http://localhost:3000' : 'https://weathup-frontend-portal.vercel.app'} 
+                                href={window.location.hostname === 'localhost' ? 'http://localhost:3000' : 'https://weath-up-frontend.vercel.app'} 
                                 className="text-decoration-none small text-secondary"
                             >
                                 <i className="fa fa-arrow-left me-1"></i> Return to main website

@@ -95,7 +95,7 @@ export const AuthProvider = ({ children }) => {
         if (window.location.hostname === 'localhost') {
             window.location.href = 'http://localhost:3000/?logout=true';
         } else {
-            window.location.href = 'https://weathup-frontend-portal.vercel.app/?logout=true';
+            window.location.href = 'https://weath-up-frontend.vercel.app/?logout=true';
         }
     };
 
