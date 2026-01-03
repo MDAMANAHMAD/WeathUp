@@ -13,7 +13,7 @@ function Login() {
     const [isLoginLoading, setIsLoginLoading] = useState(false);
     const [isDemoLoading, setIsDemoLoading] = useState(false);
 
-    // Redirect if already authenticated
+    // kick user to dashboard if they are already logged in
     React.useEffect(() => {
         if (auth.isAuthenticated) {
             navigate('/');
@@ -30,7 +30,7 @@ function Login() {
         if (success) {
             const token = localStorage.getItem('token');
             const username = localStorage.getItem('username');
-            // Redirect based on environment
+            // send them to the dashboard app
             if (window.location.hostname === 'localhost') {
                 window.location.href = `http://localhost:3001/?token=${token}&username=${encodeURIComponent(username)}`;
             } else {
@@ -44,7 +44,7 @@ function Login() {
     const handleDemoLogin = async () => {
         setIsDemoLoading(true);
         try {
-            // Updated to use Local Backend
+            // figuring out which backend to use
             const response = await axios.get(
                 window.location.hostname === 'localhost'
                     ? 'http://localhost:3002/api/auth/visitor-login'
@@ -53,11 +53,11 @@ function Login() {
 
             const { token, username } = response.data;
 
-            // Store token
-            localStorage.setItem("token", token);
-            localStorage.setItem("username", username);
-
-            // Redirect based on environment
+            // keep demo session temporary
+            sessionStorage.setItem("token", token);
+            sessionStorage.setItem("username", username);
+            
+             // send them to the dashboard app
             if (window.location.hostname === 'localhost') {
                 window.location.href = `http://localhost:3001/?token=${token}&username=${encodeURIComponent(username)}`;
             } else {

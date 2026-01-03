@@ -21,10 +21,26 @@ export const AuthProvider = ({ children }) => {
             return;
         }
 
-        const token = localStorage.getItem('token');
+        // clear any old guest sessions so it doesn't get weird
+        const localUsername = localStorage.getItem('username');
+        if (localUsername && localUsername.startsWith('Guest User')) {
+            localStorage.removeItem('token');
+            localStorage.removeItem('username');
+        }
+
+        // check if we have a temporary session first
+        let token = sessionStorage.getItem('token');
+        let username = sessionStorage.getItem('username');
+
+        // otherwise check real login
+        if (!token) {
+            token = localStorage.getItem('token');
+            username = localStorage.getItem('username');
+        }
+
         if (token) {
             setIsAuthenticated(true);
-            setUser({ username: localStorage.getItem('username') });
+            setUser({ username });
             setAuthToken(token);
         }
         setLoading(false);
@@ -39,13 +55,19 @@ export const AuthProvider = ({ children }) => {
         }
     };
 
-    const login = async (email, password) => {
+    // Added 'remember' param to control storage (default true for normal login)
+    const login = async (email, password, remember = true) => {
         try {
             const res = await axios.post(`${API_URL}/login`, { email, password });
             const { token, username } = res.data;
 
-            localStorage.setItem('token', token);
-            localStorage.setItem('username', username);
+            if (remember) {
+                localStorage.setItem('token', token);
+                localStorage.setItem('username', username);
+            } else {
+                sessionStorage.setItem('token', token);
+                sessionStorage.setItem('username', username);
+            }
 
             setAuthToken(token);
             setIsAuthenticated(true);
@@ -80,6 +102,8 @@ export const AuthProvider = ({ children }) => {
     const logout = () => {
         localStorage.removeItem('token');
         localStorage.removeItem('username');
+        sessionStorage.removeItem('token');
+        sessionStorage.removeItem('username');
         setAuthToken(null);
         setIsAuthenticated(false);
         setUser(null);
