@@ -10,6 +10,8 @@ import Orders from "./Orders";
 import Positions from "./Positions";
 import Summary from "./Summary";
 import WatchList from "./WatchList";
+import VoiceAssistant from "./VoiceAssistant";
+
 const Dashboard = () => {
   return (
     <div className="dashboard-container">
@@ -25,6 +27,7 @@ const Dashboard = () => {
           <Route path="analytics" element={<Analytics />} />
         </Routes>
       </div>
+      <VoiceAssistant />
     </div>
   );
 };
