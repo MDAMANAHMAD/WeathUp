@@ -4,7 +4,7 @@ import { VerticalGraph } from "./VerticalGraph";
 
 const Summary = () => {
   const username = localStorage.getItem("username") || "User";
-  const equityBalance = parseFloat(localStorage.getItem("equityBalance")) || 3740.00;
+  const equityBalance = parseFloat(localStorage.getItem("equityBalance")) || 0.00;
 
   const [allHoldings, setAllHoldings] = useState([]);
   const [variations, setVariations] = useState({});
