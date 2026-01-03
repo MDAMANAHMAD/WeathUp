@@ -87,6 +87,9 @@ export const AuthProvider = ({ children }) => {
 
             localStorage.setItem('token', token);
             localStorage.setItem('username', username);
+            // Reset funds for new user
+            localStorage.setItem('equityBalance', 0);
+            localStorage.setItem('mfInvestment', 0);
 
             setAuthToken(token);
             setIsAuthenticated(true);
@@ -102,6 +105,8 @@ export const AuthProvider = ({ children }) => {
     const logout = () => {
         localStorage.removeItem('token');
         localStorage.removeItem('username');
+        localStorage.removeItem('equityBalance');
+        localStorage.removeItem('mfInvestment');
         sessionStorage.removeItem('token');
         sessionStorage.removeItem('username');
         setAuthToken(null);
