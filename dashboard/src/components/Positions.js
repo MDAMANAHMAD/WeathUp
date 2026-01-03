@@ -6,8 +6,10 @@ const Positions = () => {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
+    const baseURL = window.location.hostname === 'localhost' ? "http://localhost:3002" : "https://weathup-finance-backend.onrender.com";
+
     axios
-      .get("https://weathup-finance.onrender.com/allPositions", {
+      .get(`${baseURL}/allPositions`, {
         headers: {
           "x-auth-token": token,
         },

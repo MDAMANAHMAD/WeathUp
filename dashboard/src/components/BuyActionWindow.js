@@ -24,8 +24,10 @@ const BuyActionWindow = ({ uid, mode, qty }) => {
     }
 
     const token = localStorage.getItem("token");
+    const baseURL = window.location.hostname === 'localhost' ? "http://localhost:3002" : "https://weathup-finance-backend.onrender.com";
+    
     axios.post(
-      "https://weathup-finance.onrender.com/newOrder",
+      `${baseURL}/newOrder`,
       {
         name: uid,
         qty: parseInt(stockQuantity),

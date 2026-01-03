@@ -7,8 +7,10 @@ const Orders = () => {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
+    const baseURL = window.location.hostname === 'localhost' ? "http://localhost:3002" : "https://weathup-finance-backend.onrender.com";
+
     axios
-      .get("https://weathup-finance.onrender.com/allOrders", {
+      .get(`${baseURL}/allOrders`, {
         headers: {
           "x-auth-token": token,
         },
