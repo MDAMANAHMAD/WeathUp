@@ -13,6 +13,16 @@ const BuyActionWindow = ({ uid, mode, qty }) => {
 
   const handleOrderClick = (e) => {
     e.preventDefault();
+    
+    // 1. Margin Check
+    const currentBalance = parseFloat(localStorage.getItem("equityBalance")) || 0;
+    const requiredMargin = parseInt(stockQuantity) * parseFloat(stockPrice);
+    
+    if (mode === "BUY" && requiredMargin > currentBalance) {
+        alert(`Insufficient funds! Required: ₹${requiredMargin.toFixed(2)}, Available: ₹${currentBalance.toFixed(2)}`);
+        return;
+    }
+
     const token = localStorage.getItem("token");
     axios.post(
       "https://weathup-finance.onrender.com/newOrder",
@@ -30,12 +40,25 @@ const BuyActionWindow = ({ uid, mode, qty }) => {
     )
     .then(() => {
         alert(`${mode === "BUY" ? "Buy" : "Sell"} order placed successfully!`);
+        
+        // 2. Deduct Funds Locally for Instant Feedback
+        if (mode === "BUY") {
+            const newBalance = currentBalance - requiredMargin;
+            localStorage.setItem("equityBalance", newBalance);
+        } else if (mode === "SELL") {
+            // Logic to add funds on sell could go here if the backend doesn't handle it
+             const newBalance = currentBalance + requiredMargin;
+             localStorage.setItem("equityBalance", newBalance);
+        }
+
         closeBuyWindow();
-        window.location.href = "/orders"; 
+        window.location.reload(); // Reload to refresh orders/holdings
     })
     .catch(err => {
         console.error("Order failed", err);
-        alert("Failed to place order. Check if you have sufficient holdings for selling.");
+        // Show actual server error if available
+        const serverMsg = err.response?.data?.msg || err.message;
+        alert(`Order Failed: ${serverMsg}`);
     });
   };
 
