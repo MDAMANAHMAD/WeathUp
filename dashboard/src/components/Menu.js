@@ -38,6 +38,11 @@ const Menu = () => {
             <p className={selectedMenu === 4 ? "menu selected m-0" : "menu m-0"}>Funds</p>
           </Link>
         </li>
+        <li>
+          <Link to="/analytics" onClick={() => handleMenuClick(5)} className="text-decoration-none">
+            <p className={selectedMenu === 5 ? "menu selected m-0" : "menu m-0"}>Analytics</p>
+          </Link>
+        </li>
       </ul>
 
       <div className="profile d-flex align-items-center gap-3">
@@ -47,7 +52,7 @@ const Menu = () => {
         <span className="username fw-medium">
           {localStorage.getItem("username") || "User"}
         </span>
-        <button 
+        <button
           className="btn btn-sm btn-outline-danger border-0 d-flex align-items-center gap-2"
           onClick={logout}
         >
