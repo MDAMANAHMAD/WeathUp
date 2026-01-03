@@ -69,31 +69,37 @@ const VoiceAssistant = () => {
             if (cmd.includes("holdings") || cmd.includes("holding")) {
                 setFeedback("Navigating to Holdings...");
                 navigate("/holdings");
+                stopListening(); // Reset Mic
                 return;
             }
             if (cmd.includes("orders") || cmd.includes("order")) {
                 setFeedback("Navigating to Orders...");
                 navigate("/orders");
+                stopListening(); // Reset Mic
                 return;
             }
             if (cmd.includes("positions") || cmd.includes("position")) {
                 setFeedback("Navigating to Positions...");
                 navigate("/positions");
+                stopListening(); // Reset Mic
                 return;
             }
             if (cmd.includes("funds") || cmd.includes("fund")) {
                 setFeedback("Navigating to Funds...");
                 navigate("/funds");
+                stopListening(); // Reset Mic
                 return;
             }
             if (cmd.includes("analytics") || cmd.includes("insight")) {
                 setFeedback("Opening Analytics...");
                 navigate("/analytics");
+                stopListening(); // Reset Mic
                 return;
             }
             if (cmd.includes("dashboard") || cmd.includes("home")) {
                 setFeedback("Going Home...");
                 navigate("/");
+                stopListening(); // Reset Mic
                 return;
             }
         }
@@ -111,6 +117,7 @@ const VoiceAssistant = () => {
             if (stock) {
                 setFeedback(`Buying ${quantity} ${stock.toUpperCase()}...`);
                 openBuyWindow(stock.toUpperCase(), "BUY", quantity);
+                stopListening(); // Reset Mic
             } else {
                 setFeedback("Could not identify stock name.");
             }
@@ -120,16 +127,24 @@ const VoiceAssistant = () => {
             if (stock) {
                 setFeedback(`Selling ${quantity} ${stock.toUpperCase()}...`);
                 openBuyWindow(stock.toUpperCase(), "SELL", quantity);
+                stopListening(); // Reset Mic
             } else {
                 setFeedback("Could not identify stock name.");
             }
         }
         else {
-            // Fallback for just stock names without "Buy" prefix? 
+            // Fallback for just stock names without "Buy" prefix?
             // Or unhandled commands
             if (!cmd.includes("go to") && !cmd.includes("show")) {
                 setFeedback(`Command not recognized: "${cmd}"`);
             }
+        }
+    };
+
+    const stopListening = () => {
+        if (recognition) {
+            recognition.stop();
+            setIsListening(false);
         }
     };
 

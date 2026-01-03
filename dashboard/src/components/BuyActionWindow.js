@@ -53,8 +53,9 @@ const BuyActionWindow = ({ uid, mode, qty }) => {
 
   return (
     <div className={`container ${isBuy ? "buy-mode" : "sell-mode"}`} id="buy-window">
-      <div className="header p-3 text-white" style={{ background: isBuy ? "#3d5afe" : "#ff3d00" }}>
+      <div className="header p-3 text-white d-flex justify-content-between align-items-center" style={{ background: isBuy ? "#3d5afe" : "#ff3d00" }}>
           <h5 className="m-0 fw-bold">{isBuy ? "Buy" : "Sell"} {uid}</h5>
+          <button className="btn text-white fs-4 p-0" onClick={closeBuyWindow}>&times;</button>
       </div>
       <div className="regular-order p-4">
         <div className="inputs d-flex gap-3 mb-4">
