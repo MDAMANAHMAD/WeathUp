@@ -9,9 +9,9 @@ import "./BuyActionWindow.css";
 
 import { watchlist } from "../data/data";
 
-const BuyActionWindow = ({ uid, mode }) => {
+const BuyActionWindow = ({ uid, mode, qty }) => {
   const stockData = watchlist.find(s => s.name === uid);
-  const [stockQuantity, setStockQuantity] = useState(1);
+  const [stockQuantity, setStockQuantity] = useState(qty || 1); // Use prop or default 1
   const [stockPrice, setStockPrice] = useState(stockData ? stockData.price : 0.0);
   const { closeBuyWindow } = useContext(GeneralContext);
 

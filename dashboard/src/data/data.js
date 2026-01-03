@@ -53,6 +53,54 @@ export const watchlist = [
     percent: "1.04%",
     isDown: false,
   },
+  {
+    name: "ADANIENT",
+    price: 3125.45,
+    percent: "+2.10%",
+    isDown: false,
+  },
+  {
+    name: "ASIANPAINT",
+    price: 3255.0,
+    percent: "-0.40%",
+    isDown: true,
+  },
+  {
+    name: "AXISBANK",
+    price: 1120.6,
+    percent: "+1.05%",
+    isDown: false,
+  },
+  {
+    name: "BAJFINANCE",
+    price: 7450.0,
+    percent: "-0.80%",
+    isDown: true,
+  },
+  {
+    name: "MARUTI",
+    price: 11500.0,
+    percent: "+0.50%",
+    isDown: false,
+  },
+  {
+    name: "TITAN",
+    price: 3670.0,
+    percent: "+1.20%",
+    isDown: false,
+  },
+  {
+    name: "SUNPHARMA",
+    price: 1540.0,
+    percent: "-0.20%",
+    isDown: true,
+  },
+  {
+    name: "ULTRACEMCO",
+    price: 9800.0,
+    percent: "+0.90%",
+    isDown: false,
+  },
 ];
 
 // holdings
