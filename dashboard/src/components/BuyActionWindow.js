@@ -14,10 +14,10 @@ const BuyActionWindow = ({ uid, mode, qty, price }) => {
 
   // Sync price with dynamic watchlist updates
   useEffect(() => {
-    if (stockData) {
+    if (stockData && stockData.price) {
         setStockPrice(stockData.price);
     }
-  }, [stockData, watchlist]); // Update whenever watchlist changes
+  }, [stockData?.price]); // Depend specifically on the price value to ensure updates trigger
 
   const handleOrderClick = (e) => {
     e.preventDefault();
@@ -103,7 +103,7 @@ const BuyActionWindow = ({ uid, mode, qty, price }) => {
               step="0.05"
               className="form-control border-0 shadow-none fw-bold"
               onChange={(e) => setStockPrice(e.target.value)}
-              value={stockPrice}
+              value={Number(stockPrice).toFixed(2)} 
             />
           </fieldset>
         </div>
