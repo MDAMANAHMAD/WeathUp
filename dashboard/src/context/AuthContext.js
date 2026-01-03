@@ -21,6 +21,13 @@ export const AuthProvider = ({ children }) => {
         if (tokenFromUrl && usernameFromUrl) {
             localStorage.setItem('token', tokenFromUrl);
             localStorage.setItem('username', usernameFromUrl);
+            
+            // Check if this is a new user signup
+            if (queryParams.get('isNewUser') === 'true') {
+                localStorage.setItem('equityBalance', 0);
+                localStorage.setItem('mfInvestment', 0);
+            }
+
             setAuthToken(tokenFromUrl);
             setIsAuthenticated(true);
             setUser({ username: usernameFromUrl });

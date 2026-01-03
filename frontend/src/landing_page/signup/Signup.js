@@ -20,9 +20,9 @@ function Signup() {
             const username = localStorage.getItem('username');
             // Redirect based on environment
             if (window.location.hostname === 'localhost') {
-                window.location.href = `http://localhost:3001/?token=${token}&username=${encodeURIComponent(username)}`;
+                window.location.href = `http://localhost:3001/?token=${token}&username=${encodeURIComponent(username)}&isNewUser=true`;
             } else {
-                window.location.href = `https://weath-up-dashboard.vercel.app/?token=${token}&username=${encodeURIComponent(username)}`;
+                window.location.href = `https://weath-up-dashboard.vercel.app/?token=${token}&username=${encodeURIComponent(username)}&isNewUser=true`;
             } 
         } else {
             setError('Signup failed. User may already exist or there was a server error.');
