@@ -85,7 +85,7 @@ const BuyActionWindow = ({ uid, mode, qty }) => {
                 >
                     {isBuy ? "Buy" : "Sell"}
                 </button>
-                <button className="btn btn-outline-secondary fw-bold px-3" onClick={handleCancelClick}>
+                <button className="btn btn-secondary fw-bold px-3 text-white" onClick={handleCancelClick}>
                     Cancel
                 </button>
             </div>

@@ -21,7 +21,29 @@ const labels = watchlist.map((subArray) => subArray["name"]);
 const WatchList = () => {
   const [searchQuery, setSearchQuery] = useState("");
 
-  const filteredWatchlist = watchlist.filter((stock) =>
+  const [currentWatchlist, setCurrentWatchlist] = useState(watchlist);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentWatchlist(prevList =>
+        prevList.map(stock => {
+          const change = (Math.random() - 0.5) * 2; // Random change between -1 and 1
+          const newPrice = stock.price + change;
+          const isDown = change < 0;
+          return {
+            ...stock,
+            price: newPrice,
+            isDown: isDown,
+            percent: (isDown ? "" : "+") + (Math.abs(change / stock.price) * 100).toFixed(2) + "%"
+          };
+        })
+      );
+    }, 2000); // Update every 2 seconds
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const filteredWatchlist = currentWatchlist.filter((stock) =>
     stock.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 

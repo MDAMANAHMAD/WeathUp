@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 const Funds = () => {
-  const initialBalance = parseFloat(localStorage.getItem("equityBalance")) || 3740.00;
+  const initialBalance = parseFloat(localStorage.getItem("equityBalance")) || 0.00;
   const initialMF = parseFloat(localStorage.getItem("mfInvestment")) || 0.00;
 
   const [balance, setBalance] = useState(initialBalance);

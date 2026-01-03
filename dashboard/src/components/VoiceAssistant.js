@@ -1,12 +1,14 @@
 import React, { useState, useEffect, useContext, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import GeneralContext from "./GeneralContext";
+import { useAuth } from "../context/AuthContext"; // Import useAuth
 
 const VoiceAssistant = () => {
   const [isListening, setIsListening] = useState(false);
   const [transcript, setTranscript] = useState("");
   const [feedback, setFeedback] = useState("");
   const { openBuyWindow } = useContext(GeneralContext);
+  const { logout } = useAuth(); // Get logout function
   const navigate = useNavigate();
 
   // Use refs to access the latest state in callbacks without re-initializing recognition on every render
@@ -110,6 +112,11 @@ const VoiceAssistant = () => {
         if (cmd.includes("dashboard") || cmd.includes("home")) {
             setFeedback("Going Home...");
             navigate("/");
+            return;
+        }
+        if (cmd.includes("logout") || cmd.includes("log out")) {
+            setFeedback("Logging out...");
+            logout();
             return;
         }
     }
