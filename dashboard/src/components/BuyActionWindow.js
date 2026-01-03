@@ -6,11 +6,18 @@ import "./BuyActionWindow.css";
 import { watchlist } from "../data/data";
 
 const BuyActionWindow = ({ uid, mode, qty, price }) => {
+  const { closeBuyWindow, watchlist } = useContext(GeneralContext); // Get dynamic watchlist
   const stockData = watchlist.find(s => s.name === uid);
+  
   const [stockQuantity, setStockQuantity] = useState(qty || 1); 
-  // Use the passed 'price' if available (it comes from the dynamic watchlist), otherwise fallback
   const [stockPrice, setStockPrice] = useState(price || (stockData ? stockData.price : 0.0));
-  const { closeBuyWindow } = useContext(GeneralContext);
+
+  // Sync price with dynamic watchlist updates
+  useEffect(() => {
+    if (stockData) {
+        setStockPrice(stockData.price);
+    }
+  }, [stockData, watchlist]); // Update whenever watchlist changes
 
   const handleOrderClick = (e) => {
     e.preventDefault();
