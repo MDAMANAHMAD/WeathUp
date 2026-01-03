@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 const Funds = () => {
   const initialBalance = parseFloat(localStorage.getItem("equityBalance")) || 0.00;
@@ -6,6 +7,7 @@ const Funds = () => {
 
   const [balance, setBalance] = useState(initialBalance);
   const [mfInvestment, setMfInvestment] = useState(initialMF);
+  const [usedMargin, setUsedMargin] = useState(0);
 
   useEffect(() => {
     localStorage.setItem("equityBalance", balance);
@@ -14,6 +16,18 @@ const Funds = () => {
   useEffect(() => {
     localStorage.setItem("mfInvestment", mfInvestment);
   }, [mfInvestment]);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    const baseURL = window.location.hostname === 'localhost' ? "http://localhost:3002" : "https://weathup-finance-backend.onrender.com";
+    
+    axios.get(`${baseURL}/allHoldings`, {
+        headers: { "x-auth-token": token }
+    }).then(res => {
+        const totalInvested = res.data.reduce((acc, stock) => acc + (stock.avg * stock.qty), 0);
+        setUsedMargin(totalInvested);
+    }).catch(err => console.error("Failed to fetch holdings for margin calc", err));
+  }, []);
 
   const handleAddFunds = () => {
     const amount = window.prompt("Enter amount to deposit:", "1000");
@@ -66,11 +80,11 @@ const Funds = () => {
               <div className="d-flex flex-column gap-4 mt-2 mb-4">
                 <div className="d-flex justify-content-between border-bottom pb-3 align-items-center">
                   <span className="text-secondary fs-5">Available margin</span>
-                  <span className="fw-bold h2 m-0 text-primary">₹ {balance.toLocaleString(undefined, { minimumFractionDigits: 2 })}</span>
+                  <span className="fw-bold fs-5">₹ {balance.toLocaleString(undefined, { minimumFractionDigits: 2 })}</span>
                 </div>
                 <div className="d-flex justify-content-between border-bottom pb-3">
                   <span className="text-secondary">Used margin</span>
-                  <span className="fw-bold fs-5">₹ 0.00</span>
+                  <span className="fw-bold fs-5">₹ {usedMargin.toLocaleString(undefined, { minimumFractionDigits: 2 })}</span>
                 </div>
                 <div className="d-flex justify-content-between border-bottom pb-3">
                     <span className="text-secondary">Available cash</span>

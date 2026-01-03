@@ -105,7 +105,7 @@ const Summary = () => {
                   <div className="sub-stats pe-lg-5">
                     <div className="mb-3 d-flex justify-content-between gap-5 border-bottom pb-2">
                       <span className="text-secondary">Margins used</span>
-                      <span className="fw-bold">0.00</span>
+                      <span className="fw-bold">₹ {totalInvestment.toLocaleString()}</span>
                     </div>
                     <div className="d-flex justify-content-between gap-5">
                       <span className="text-secondary">Opening balance</span>
