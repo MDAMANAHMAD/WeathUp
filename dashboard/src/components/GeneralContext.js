@@ -11,19 +11,21 @@ export const GeneralContextProvider = (props) => {
   const [isBuyWindowOpen, setIsBuyWindowOpen] = useState(false);
   const [selectedStockUID, setSelectedStockUID] = useState("");
   const [orderMode, setOrderMode] = useState("BUY");
-  const [defaultQty, setDefaultQty] = useState(1); // NEW: Store quantity
+  const [defaultPrice, setDefaultPrice] = useState(0.0); // NEW: Store price
 
-  const handleOpenBuyWindow = (uid, mode = "BUY", qty = 1) => {
+  const handleOpenBuyWindow = (uid, mode = "BUY", qty = 1, price = 0.0) => {
     setIsBuyWindowOpen(true);
     setSelectedStockUID(uid);
     setOrderMode(mode);
-    setDefaultQty(qty); // Set the quantity
+    setDefaultQty(qty);
+    setDefaultPrice(price); // Set the price
   };
 
   const handleCloseBuyWindow = () => {
     setIsBuyWindowOpen(false);
     setSelectedStockUID("");
     setOrderMode("BUY");
+    setDefaultPrice(0.0);
   };
 
   return (
@@ -34,7 +36,7 @@ export const GeneralContextProvider = (props) => {
       }}
     >
       {props.children}
-      {isBuyWindowOpen && <BuyActionWindow uid={selectedStockUID} mode={orderMode} qty={defaultQty} />}
+      {isBuyWindowOpen && <BuyActionWindow uid={selectedStockUID} mode={orderMode} qty={defaultQty} price={defaultPrice} />}
     </GeneralContext.Provider>
   );
 };

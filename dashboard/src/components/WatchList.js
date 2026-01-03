@@ -157,21 +157,21 @@ const WatchListItem = ({ stock }) => {
           <span className="price fw-semibold ms-2">{stock.price.toFixed(2)}</span>
         </div>
       </div>
-      {showWatchlistActions && <WatchListActions uid={stock.name} />}
+      {showWatchlistActions && <WatchListActions uid={stock.name} price={stock.price} />}
     </li>
 
   );
 };
 
-const WatchListActions = ({ uid }) => {
+const WatchListActions = ({ uid, price }) => {
   const generalContext = useContext(GeneralContext);
 
   const handleBuyClick = () => {
-    generalContext.openBuyWindow(uid, "BUY");
+    generalContext.openBuyWindow(uid, "BUY", 1, price);
   };
 
   const handleSellClick = () => {
-    generalContext.openBuyWindow(uid, "SELL");
+    generalContext.openBuyWindow(uid, "SELL", 1, price);
   };
 
   return (

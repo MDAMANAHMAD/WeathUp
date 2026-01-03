@@ -5,10 +5,11 @@ import GeneralContext from "./GeneralContext";
 import "./BuyActionWindow.css";
 import { watchlist } from "../data/data";
 
-const BuyActionWindow = ({ uid, mode, qty }) => {
+const BuyActionWindow = ({ uid, mode, qty, price }) => {
   const stockData = watchlist.find(s => s.name === uid);
   const [stockQuantity, setStockQuantity] = useState(qty || 1); 
-  const [stockPrice, setStockPrice] = useState(stockData ? stockData.price : 0.0);
+  // Use the passed 'price' if available (it comes from the dynamic watchlist), otherwise fallback
+  const [stockPrice, setStockPrice] = useState(price || (stockData ? stockData.price : 0.0));
   const { closeBuyWindow } = useContext(GeneralContext);
 
   const handleOrderClick = (e) => {
