@@ -10,14 +10,22 @@ function Login() {
     const auth = useAuth();
     const navigate = useNavigate();
 
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoginLoading, setIsLoginLoading] = useState(false);
+    const [isDemoLoading, setIsDemoLoading] = useState(false);
+
+    // Redirect if already authenticated
+    React.useEffect(() => {
+        if (auth.isAuthenticated) {
+            navigate('/');
+        }
+    }, [auth.isAuthenticated, navigate]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError('');
-        setIsLoading(true);
+        setIsLoginLoading(true);
         const success = await auth.login(email, password);
-        setIsLoading(false);
+        setIsLoginLoading(false);
 
         if (success) {
             const token = localStorage.getItem('token');
@@ -34,7 +42,7 @@ function Login() {
     };
 
     const handleDemoLogin = async () => {
-        setIsLoading(true);
+        setIsDemoLoading(true);
         try {
             // Updated to use Local Backend
             const response = await axios.get(
@@ -58,7 +66,7 @@ function Login() {
         } catch (err) {
             console.error(err);
             setError('Unable to access demo account at this time.');
-            setIsLoading(false);
+            setIsDemoLoading(false);
         }
     };
 
@@ -92,8 +100,8 @@ function Login() {
                                     required
                                 />
                             </div>
-                            <button type="submit" className="btn btn-primary btn-lg w-100 fw-bold mb-3" disabled={isLoading}>
-                                {isLoading ? (
+                            <button type="submit" className="btn btn-primary btn-lg w-100 fw-bold mb-3" disabled={isLoginLoading || isDemoLoading}>
+                                {isLoginLoading ? (
                                     <>
                                         <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
                                         Logging in...
@@ -102,21 +110,21 @@ function Login() {
                                     "Login"
                                 )}
                             </button>
-                <button
-                    type="button"
-                    onClick={handleDemoLogin}
-                    className="btn btn-outline-primary btn-lg w-100 fw-bold"
-                    disabled={isLoading}
-                >
-                    {isLoading ? (
-                        <>
-                            <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
-                            Logging in...
-                        </>
-                    ) : (
-                        "Try Demo Account"
-                    )}
-                </button>
+                            <button
+                                type="button"
+                                onClick={handleDemoLogin}
+                                className="btn btn-outline-primary btn-lg w-100 fw-bold"
+                                disabled={isLoginLoading || isDemoLoading}
+                            >
+                                {isDemoLoading ? (
+                                    <>
+                                        <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                                        Logging in...
+                                    </>
+                                ) : (
+                                    "Try Demo Account"
+                                )}
+                            </button>
                         </form>
 
                         <hr className="my-4" />
