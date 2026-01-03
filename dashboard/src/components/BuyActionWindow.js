@@ -1,20 +1,15 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
-
 import axios from "axios";
-
 import GeneralContext from "./GeneralContext";
-
 import "./BuyActionWindow.css";
-
 import { watchlist } from "../data/data";
 
 const BuyActionWindow = ({ uid, mode, qty }) => {
   const stockData = watchlist.find(s => s.name === uid);
-  const [stockQuantity, setStockQuantity] = useState(qty || 1); // Use prop or default 1
+  const [stockQuantity, setStockQuantity] = useState(qty || 1); 
   const [stockPrice, setStockPrice] = useState(stockData ? stockData.price : 0.0);
   const { closeBuyWindow } = useContext(GeneralContext);
-
 
   const handleOrderClick = (e) => {
     e.preventDefault();
@@ -90,7 +85,7 @@ const BuyActionWindow = ({ uid, mode, qty }) => {
                 >
                     {isBuy ? "Buy" : "Sell"}
                 </button>
-                <button className="btn btn-outline-secondary fw-bold" onClick={handleCancelClick}>
+                <button className="btn btn-outline-secondary fw-bold px-3" onClick={handleCancelClick}>
                     Cancel
                 </button>
             </div>
