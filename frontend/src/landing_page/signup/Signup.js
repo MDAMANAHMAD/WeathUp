@@ -7,13 +7,16 @@ function Signup() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const [isSignupLoading, setIsSignupLoading] = useState(false);
     const auth = useAuth();
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError('');
+        setIsSignupLoading(true);
         const success = await auth.signup(username, email, password);
+        setIsSignupLoading(false);
 
         if (success) {
             const token = localStorage.getItem('token');
@@ -72,7 +75,16 @@ function Signup() {
                                     required 
                                 />
                             </div>
-                            <button type="submit" className="btn btn-success btn-lg w-100 fw-bold">Sign Up for Free</button>
+                            <button type="submit" className="btn btn-success btn-lg w-100 fw-bold" disabled={isSignupLoading}>
+                                {isSignupLoading ? (
+                                    <>
+                                        <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                                        Signing Up...
+                                    </>
+                                ) : (
+                                    "Sign Up for Free"
+                                )}
+                            </button>
                         </form>
                         <hr className="my-4" />
                         <p className="text-center text-muted mb-0">
