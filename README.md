@@ -1,24 +1,25 @@
-# WealthUp
+# WealthUp - Full-Stack Trading Platform
 
-Hey! This is my clone of the Zerodha trading platform. I built this to learn how full-stack applications work, especially managing user sessions and real-time data.
+WealthUp is a comprehensive clone of the Zerodha trading platform, developed as a collaborative group project. The platform is designed to handle high-frequency interactions, secure user authentication, and real-time portfolio management.
 
-## What it does
-- You can sign up or log in.
-- There's a "Demo Account" button if you just want to look around without signing up.
-- You can buy/sell stocks (simulated, of course!).
-- It has a dashboard that shows your portfolio.
+## Team Contributions
+- **Backend Architecture (Aman Ahmad)**: Developed the core API using Node.js/Express, designed the MongoDB schema, implemented JWT-based authentication, and managed complex transaction logic for buying/selling stocks.
+- **Frontend & Landing Page (Manish Kushvaha)**: Built the responsive landing pages and user onboarding flows using React and Bootstrap.
+- **Trading Dashboard (Mayank)**: Developed the data-rich dashboard for portfolio tracking and real-time analytics.
 
-## How to run it
-I have two parts here:
-1. **Frontend**: The landing page and stuff.
-2. **Dashboard**: The main app where you trade.
-3. **Backend**: The server connecting everything.
-
-Just run `npm install` in the folders and then `npm start`.
+## Core Features
+- **Secure Authentication**: JWT-based user sessions and demo account access.
+- **Portfolio Management**: Real-time tracking of Holdings, Positions, and Orders.
+- **Transaction Engine**: Robust logic for simulated stock trading (Buy/Sell) with automatic portfolio updates.
+- **Cross-Origin Integration**: Seamless communication between the landing page, dashboard, and backend services.
 
 ## Tech Stack
-- MongoDB for the database.
-- Express & Node.js for the backend.
-- React for the frontend.
+- **Backend**: Node.js, Express, MongoDB (Mongoose), JWT.
+- **Frontend**: React, Bootstrap, Axios.
+- **Deployment**: Vercel (Dashboard/Frontend), Render (Backend).
 
-Still working on adding more features!
+## Setup & Installation
+1. Clone the repository.
+2. Install dependencies in each directory (`backend`, `frontend`, `dashboard`).
+3. Set up your `.env` file in the `backend` folder with your `MONGO_URL` and `PORT`.
+4. Run `npm start` (or `npm run dev`) in each directory.
